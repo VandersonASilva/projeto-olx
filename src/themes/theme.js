@@ -1,4 +1,4 @@
-const theme = {
+export const theme = {
   color: {
     firstColor: "#6F0AD6",
     firstColorHover: "#840CFF",
