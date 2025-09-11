@@ -1,57 +1,19 @@
 export default function Footer() {
-  const footerNavs = [
-    {
-      href: "javascript:void()",
-      name: "About",
-    },
-    {
-      href: "javascript:void()",
-      name: "Blog",
-    },
-    {
-      href: "javascript:void()",
-      name: "",
-    },
-    {
-      href: "javascript:void()",
-      name: "Team",
-    },
-    {
-      href: "javascript:void()",
-      name: "Careers",
-    },
-
-    {
-      href: "javascript:void()",
-      name: "Suuport",
-    },
-  ];
-
   return (
     <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8">
       <div className="max-w-lg sm:mx-auto sm:text-center">
         <img
-          src="https://www.floatui.com/logo.svg"
+          src="https://logopng.com.br/logos/olx-104.png"
           className="w-32 sm:mx-auto"
         />
         <p className="leading-relaxed mt-2 text-[15px]">
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s, when an unknown printer took a galley of type and scrambled it
-          to make a type specimen book.
+          Compre e venda itens novos e usados em sua comunidade local. Encontre
+          ofertas incríveis em eletrônicos, carros, móveis e muito mais no OLX.
         </p>
       </div>
-      <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
-        {footerNavs.map((item, idx) => (
-          <li className=" hover:text-gray-800">
-            <a key={idx} href={item.href}>
-              {item.name}
-            </a>
-          </li>
-        ))}
-      </ul>
       <div className="mt-8 items-center justify-between sm:flex">
         <div className="mt-4 sm:mt-0">
-          &copy; 2022 Float UI All rights reserved.
+          &copy; 2025 Todos os direitos reservados.
         </div>
         <div className="mt-6 sm:mt-0">
           <ul className="flex items-center space-x-4">
@@ -65,7 +27,6 @@ export default function Footer() {
                 </svg>
               </a>
             </li>
-
             <li className="w-10 h-10 border rounded-full flex items-center justify-center">
               <a href="javascript:void()">
                 <svg class="svg-icon w-6 h-6 text-blue-700" viewBox="0 0 20 20">

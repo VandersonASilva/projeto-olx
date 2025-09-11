@@ -4,19 +4,9 @@ export default function HeaderLogado() {
   const [state, setState] = useState(false);
 
   // Replace javascript:void(0) paths with your paths
-  const navigation = [
-    { title: "Pro version", path: "javascript:void(0)" },
-    { title: "Upgrade", path: "javascript:void(0)" },
-    { title: "Support", path: "javascript:void(0)" },
-  ];
+  const navigation = ["Logout"];
 
-  const submenuNav = [
-    { title: "Overview", path: "javascript:void(0)" },
-    { title: "Integration", path: "javascript:void(0)" },
-    { title: "Billing", path: "javascript:void(0)" },
-    { title: "Transactions", path: "javascript:void(0)" },
-    { title: "Plans", path: "javascript:void(0)" },
-  ];
+  const submenuNav = ["Todos os anúncios", "Meus anúncios"];
 
   return (
     <header className="text-base lg:text-sm">
@@ -28,7 +18,7 @@ export default function HeaderLogado() {
         <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
           <a href="javascript:void(0)">
             <img
-              src="https://www.floatui.com/logo.svg"
+              src="https://logopng.com.br/logos/olx-104.png"
               width={120}
               height={50}
               alt="Float UI logo"
@@ -79,7 +69,7 @@ export default function HeaderLogado() {
               onSubmit={(e) => e.preventDefault()}
               className="flex-1 items-center justify-start pb-4 lg:flex lg:pb-0"
             >
-              <div className="flex items-center gap-1 px-2 border rounded-lg">
+              <div className="flex items-center gap-1 px-2 border rounded-lg w-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 text-gray-400"
@@ -104,12 +94,9 @@ export default function HeaderLogado() {
             {navigation.map((item, idx) => {
               return (
                 <li key={idx}>
-                  <a
-                    href={item.path}
-                    className="block text-gray-700 hover:text-gray-900"
-                  >
-                    {item.title}
-                  </a>
+                  <button className="block text-white w-fit px-6 py-2 rounded-lg bg-gray-700 font-bold">
+                    {item}
+                  </button>
                 </li>
               );
             })}
@@ -120,19 +107,10 @@ export default function HeaderLogado() {
         <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
           {submenuNav.map((item, idx) => {
             return (
-              // Replace [idx == 0] with [window.location.pathname == item.path]
-              <li
-                key={idx}
-                className={`py-1 ${
-                  idx == 0 ? "border-b-2 border-indigo-600" : ""
-                }`}
-              >
-                <a
-                  href={item.path}
-                  className="block py-2 px-3 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 duration-150"
-                >
-                  {item.title}
-                </a>
+              <li key={idx}>
+                <button className="block py-2 px-3 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 duration-150">
+                  {item}
+                </button>
               </li>
             );
           })}
