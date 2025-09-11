@@ -24,6 +24,16 @@ export default function CardsLogado() {
         estado: "RJ",
       },
     },
+    {
+      titulo: "Notebook Dell Inspiron",
+      descricaoCurta: "Notebook ideal para trabalho e estudos, com 8GB de RAM.",
+      created_at: "20.08.2025",
+      preco: "R$ 3.000,00",
+      usuario: {
+        cidade: "Belo Horizonte",
+        estado: "MG",
+      },
+    },
   ];
 
   return (
