@@ -3,16 +3,30 @@ export default function CadastroPage() {
     <main className="w-full flex">
       <div className="relative flex-1 hidden items-center justify-center h-screen bg-gray-900 lg:flex">
         <div className="relative z-10 w-full max-w-md">
-          <img src="https://floatui.com/logo-dark.svg" width={150} />
+          <img src="https://logopng.com.br/logos/olx-104.png" width={150} />
           <div className=" mt-16 space-y-3">
             <h3 className="text-white text-3xl font-bold">
-              Start growing your business quickly
+              Crie sua conta OLX e aproveite todas as vantagens
             </h3>
-            <p className="text-gray-300">
-              Create an account and get access to all features for 30-days, No
-              credit card required.
-            </p>
-            <div className="flex items-center -space-x-2 overflow-hidden">
+            <ul className="text-gray-300">
+              <li>
+                Anuncie grátis e desapegue de produtos, autos e imóveis sem
+                pagar nada.
+              </li>
+
+              <li>
+                Negocie com compradores e vendedores através do chat OLX e
+                previna-se de golpes.
+              </li>
+
+              <li>Favorite as ofertas que você mais curtiu.</li>
+
+              <li>
+                Enviamos recomendações personalizadas para te ajudar a encontrar
+                o apego perfeito.
+              </li>
+            </ul>
+            {/* <div className="flex items-center -space-x-2 overflow-hidden">
               <img
                 src="https://randomuser.me/api/portraits/women/79.jpg"
                 className="w-10 h-10 rounded-full border-2 border-white"
@@ -36,7 +50,7 @@ export default function CadastroPage() {
               <p className="text-sm text-gray-400 font-medium translate-x-5">
                 Join 5.000+ users
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
         <div
@@ -51,11 +65,11 @@ export default function CadastroPage() {
       <div className="flex-1 flex items-center justify-center h-screen">
         <div className="w-full max-w-md space-y-8 px-4 bg-white text-gray-600 sm:px-0">
           <div className="">
-            <img
+            {/* <img
               src="https://floatui.com/logo.svg"
               width={150}
               className="lg:hidden"
-            />
+            /> */}
             <div className="mt-5 space-y-2">
               <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
                 Entrar

@@ -1,30 +1,27 @@
 export default function Cards() {
   const jobs = [
     {
-      title: "UI – Front End Dev",
-      desc: "Currently, ManTech is seeking a motivated, career and customer-oriented Software Developer to join our team in Fort Meade, MD.",
-      date: "May 17, 2022",
-      salary: "98,000 USD",
-      type: "Full-time",
-      location: "Columbia, MD",
+      title: "Bicicleta Aro 29",
+      desc: "Bicicleta em ótimo estado, usado apenas em trilhas leves.",
+      date: "01.10.2025",
+      salary: "R$ 1.200,00",
+      location: "São Paulo - SP",
       href: "javascript:void(0)",
     },
     {
-      title: "Back End Developer",
-      desc: " Help us solve problems and develop great user interface tools for our developers.",
-      date: "Nov 11, 2022",
-      salary: "$105,000 USD",
-      type: "Part-time",
-      location: "Remote",
+      title: "Smartphone Galaxy S21",
+      desc: " Smartphone com câmera de alta resolução e bateria duradoura.",
+      date: "15.09.2025",
+      salary: "R$ 2.500,00",
+      location: "Rio de Janeiro - RJ",
       href: "javascript:void(0)",
     },
     {
-      title: "Full-Stack Developer",
-      desc: "This position is 100% remote, working as part of a small, multi-functional team. You must be confident at working alone.",
-      date: "Jan 2, 2022",
-      salary: "163,273 USD",
-      type: "Full-time",
-      location: "Remote",
+      title: "Notebook Dell Inspiron",
+      desc: "Notebook ideal para trabalho e estudos, com 8GB de RAM.",
+      date: "20.08.2025",
+      salary: "R$ 3.000,00",
+      location: "Belo Horizonte - MG",
       href: "javascript:void(0)",
     },
   ];
@@ -33,7 +30,7 @@ export default function Cards() {
     <section className="mt-12 max-w-screen-lg mx-auto px-4 md:px-8">
       <div>
         <h1 className="text-gray-800 text-3xl font-semibold">
-          Explore The Jobs
+          Explore os anúncios
         </h1>
       </div>
 
@@ -84,22 +81,6 @@ export default function Cards() {
                   </div>
                 </div>
                 <div className="mt-4 items-center space-y-4 text-sm sm:flex sm:space-x-4 sm:space-y-0">
-                  <span className="flex items-center text-gray-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 mr-2"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
-                        clipRule="evenodd"
-                      />
-                      <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
-                    </svg>
-                    {item.type}
-                  </span>
                   <span className="flex items-center text-gray-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
