@@ -5,10 +5,8 @@ export default function Header() {
 
   // Replace javascript:void(0) paths with your paths
   const navigation = [
-    { title: "Conta", path: "javascript:void(0)" },
+    { title: "Todos os Anúncios", path: "javascript:void(0)" },
     { title: "Meus anúncios", path: "javascript:void(0)" },
-    { title: "Categorias", path: "javascript:void(0)" },
-    { title: "", path: "javascript:void(0)" },
   ];
 
   useEffect(() => {

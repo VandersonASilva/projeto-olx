@@ -5,15 +5,15 @@ export default function DetalhePage() {
     "Transporte",
     "Imóvel",
     "Decoração",
-    "Outros"
+    "Outros",
   ];
 
   return (
     <main className="flex overflow-hidden">
-      <div className="flex-1 hidden lg:block">
+      <div className="flex justify-center items-center">
         <img
-          src="https://braziljournal.com/wp-content/uploads/2022/06/d918e697-d796-e2d6-cc9a-e3fd1b8b98d9-635x357.jpg"
-          className="w-full h-screen object-cover"
+          src="https://m.media-amazon.com/images/I/51VZErxKwkL._AC_SX679_.jpg"
+          className="w-[50%]"
         />
       </div>
       <div className="py-12 flex-1 lg:flex lg:justify-center lg:h-screen lg:overflow-auto">
@@ -22,9 +22,10 @@ export default function DetalhePage() {
             <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
               Edite suas informações
             </h3>
-            {/* <p className="mt-3">
-              We’d love to hear from you! Please fill out the form bellow.
-            </p> */}
+            <p className="mt-3">
+              Edite as informações do seu anúncio e clique em anunciar quando
+              terminar.
+            </p>
           </div>
           <form
             onSubmit={(e) => e.preventDefault()}
@@ -49,13 +50,6 @@ export default function DetalhePage() {
             <div>
               <label className="font-medium">Telefone</label>
               <div className="relative mt-2">
-                {/* <div className="absolute inset-y-0 left-3 my-auto h-6 flex items-center border-r pr-2">
-                  <select className="text-sm bg-transparent outline-none rounded-lg h-full">
-                    <option>US</option>
-                    <option>ES</option>
-                    <option>MR</option>
-                  </select>
-                </div> */}
                 <input
                   type="number"
                   placeholder="+55 (85) 90000-0000"

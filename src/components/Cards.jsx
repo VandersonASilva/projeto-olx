@@ -1,28 +1,36 @@
 export default function Cards() {
-  const jobs = [
+  const anunciosData = [
     {
-      title: "Bicicleta Aro 29",
-      desc: "Bicicleta em ótimo estado, usado apenas em trilhas leves.",
-      date: "01.10.2025",
-      salary: "R$ 1.200,00",
-      location: "São Paulo - SP",
-      href: "javascript:void(0)",
+      titulo: "Bicicleta Aro 29",
+      descricaoCurta:
+        "Bicicleta em ótimo estado, usado apenas em trilhas leves.",
+      created_at: "01.10.2025",
+      preco: "R$ 1.200,00",
+      usuario: {
+        cidade: "São Paulo",
+        estado: "SP",
+      },
     },
     {
-      title: "Smartphone Galaxy S21",
-      desc: " Smartphone com câmera de alta resolução e bateria duradoura.",
-      date: "15.09.2025",
-      salary: "R$ 2.500,00",
-      location: "Rio de Janeiro - RJ",
-      href: "javascript:void(0)",
+      titulo: "Smartphone Galaxy S21",
+      descricaoCurta:
+        "Smartphone com câmera de alta resolução e bateria duradoura.",
+      created_at: "15.09.2025",
+      preco: "R$ 2.500,00",
+      usuario: {
+        cidade: "Rio de Janeiro",
+        estado: "RJ",
+      },
     },
     {
-      title: "Notebook Dell Inspiron",
-      desc: "Notebook ideal para trabalho e estudos, com 8GB de RAM.",
-      date: "20.08.2025",
-      salary: "R$ 3.000,00",
-      location: "Belo Horizonte - MG",
-      href: "javascript:void(0)",
+      titulo: "Notebook Dell Inspiron",
+      descricaoCurta: "Notebook ideal para trabalho e estudos, com 8GB de RAM.",
+      created_at: "20.08.2025",
+      preco: "R$ 3.000,00",
+      usuario: {
+        cidade: "Belo Horizonte",
+        estado: "MG",
+      },
     },
   ];
 
@@ -30,21 +38,26 @@ export default function Cards() {
     <section className="mt-12 max-w-screen-lg mx-auto px-4 md:px-8">
       <div>
         <h1 className="text-gray-800 text-3xl font-semibold">
-          Explore os anúncios
+          Todos os Anúncios
         </h1>
       </div>
 
       <ul className="mt-12 space-y-6">
-        {jobs.map((item, idx) => (
-          <li key={idx} className="p-5 bg-white rounded-md shadow-sm">
-            <a href={item.href}>
+        {anunciosData.map((item, idx) => (
+          <li
+            key={idx}
+            className="p-5 bg-white rounded-md shadow-sm flex flex-row gap-5"
+          >
+            <button className="w-full">
               <div>
                 <div className="justify-between sm:flex">
-                  <div className="flex-1">
-                    <h3 className="text-xl font-medium text-cyan-600">
-                      {item.title}
+                  <div>
+                    <h3 className="text-start text-xl font-medium text-cyan-600">
+                      {item.titulo}
                     </h3>
-                    <p className="text-gray-500 mt-2 pr-2">{item.desc}</p>
+                    <p className="text-gray-500 mt-2 pr-2">
+                      {item.descricaoCurta}
+                    </p>
                   </div>
                   <div className="mt-5 space-y-4 text-sm sm:mt-0 sm:space-y-2">
                     <span className="flex items-center text-gray-500">
@@ -60,7 +73,7 @@ export default function Cards() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      {item.date}
+                      {item.created_at}
                     </span>
                     <span className="flex items-center text-gray-500">
                       <svg
@@ -76,7 +89,9 @@ export default function Cards() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      {item.salary}
+                      <div className="text-2xl font-bold text-blue-700">
+                        {item.preco}
+                      </div>
                     </span>
                   </div>
                 </div>
@@ -94,11 +109,11 @@ export default function Cards() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    {item.location}
+                    {item.usuario.cidade},{item.usuario.estado}
                   </span>
                 </div>
               </div>
-            </a>
+            </button>
           </li>
         ))}
       </ul>
