@@ -1,6 +1,10 @@
 import { PencilLineIcon, TrashIcon } from "@phosphor-icons/react";
 
-export default function CardsLogado() {
+
+export default function CardsLogado({setOpenModal}) {
+  function handleOpenModal() {
+    setOpenModal(true);
+  }
   const anunciosData = [
     {
       titulo: "Bicicleta Aro 29",
@@ -39,9 +43,7 @@ export default function CardsLogado() {
   return (
     <section className="mt-12 max-w-screen-lg mx-auto px-4 md:px-8">
       <div>
-        <h1 className="text-gray-800 text-3xl font-semibold">
-          Meus anúncios
-        </h1>
+        <h1 className="text-gray-800 text-3xl font-semibold">Meus anúncios</h1>
       </div>
 
       <ul className="mt-12 space-y-6">
@@ -120,7 +122,10 @@ export default function CardsLogado() {
               <button className="text-white bg-green-700 w-fit p-3 rounded-xl">
                 <PencilLineIcon size={32} />
               </button>
-              <button className="text-white bg-red-700 w-fit p-3 rounded-xl">
+              <button
+                onClick={handleOpenModal}
+                className="text-white bg-red-700 w-fit p-3 rounded-xl"
+              >
                 <TrashIcon size={32} />
               </button>
             </div>
