@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function LoginPage() {
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center px-4">
@@ -14,12 +16,12 @@ export default function LoginPage() {
             </h3>
             <p className="">
               Não tem uma conta?{" "}
-              <a
-                href="javascript:void(0)"
+              <Link
+                to="/cadastro"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
-                Entrar
-              </a>
+                Cadastre-se
+              </Link>
             </p>
           </div>
         </div>

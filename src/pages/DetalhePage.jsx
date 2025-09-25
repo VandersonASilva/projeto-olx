@@ -1,13 +1,6 @@
-export default function DetalhePage() {
-  const servicesItems = [
-    "Eletrônicos",
-    "Vestimenta",
-    "Transporte",
-    "Imóvel",
-    "Decoração",
-    "Outros",
-  ];
+import { Link } from "react-router-dom";
 
+export default function DetalhePage() {
   return (
     <main className="flex overflow-hidden">
       <div className="flex justify-center items-center">
@@ -40,7 +33,7 @@ export default function DetalhePage() {
               />
             </div>
             <div>
-              <label className="font-medium">Preço</label>
+              <label className="font-medium">Valor</label>
               <input
                 type="number"
                 required
@@ -70,9 +63,14 @@ export default function DetalhePage() {
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
-            <button className="w-full px-4 py-2 text-white font-medium  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer">
-              Salvar
-            </button>
+            <div className="flex flex-col items-center gap-4">
+              <Link to={"/meus-anuncios"} className="w-full border-1 border-gray-400 py-2 rounded-lg hover:bg-gray-100 duration-150 cursor-pointer font-semibold text-center">
+                Cancelar
+              </Link>
+              <button className="w-full px-4 py-2 text-white font-medium  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer">
+                Salvar
+              </button>
+            </div>
           </form>
         </div>
       </div>
