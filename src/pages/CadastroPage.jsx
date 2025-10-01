@@ -100,6 +100,7 @@ export default function CadastroPage() {
               <input
                 type="text"
                 required
+                name="nome"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
@@ -108,6 +109,7 @@ export default function CadastroPage() {
               <input
                 type="email"
                 required
+                name="email"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
@@ -116,6 +118,7 @@ export default function CadastroPage() {
               <input
                 type="number"
                 required
+                name="telefone"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
@@ -124,6 +127,7 @@ export default function CadastroPage() {
               <input
                 type="text"
                 required
+                name="cidade"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
@@ -131,6 +135,7 @@ export default function CadastroPage() {
               <label className="font-medium">Estado</label>
               <select
                 required
+                name="estado"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               >
                 <option value="">Selecione um estado</option>
@@ -148,6 +153,7 @@ export default function CadastroPage() {
               <input
                 type="password"
                 required
+                name="senha"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
