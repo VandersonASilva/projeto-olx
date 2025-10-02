@@ -1,7 +1,28 @@
 import { Link } from "react-router-dom";
 import { estadosDoBrasil } from "../mock/estadosDoBrasil";
+import { useState } from "react";
 
 export default function CadastroPage() {
+  const [dataCadastro, setDataCadastro] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    cidade: "",
+    estado: "",
+    senha: "",
+  });
+
+  function handleChangeInputs(event) {
+    const { name, value } = event.target;
+    setDataCadastro({ ...dataCadastro, [name]: value });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(dataCadastro);
+    console.log("Enviar para o BackEnd");
+  }
+
   return (
     <main className="w-full flex">
       <div className="relative flex-1 hidden items-center justify-center h-screen bg-gray-900 lg:flex">
@@ -94,13 +115,15 @@ export default function CadastroPage() {
               Ou continue com
             </p>
           </div>
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="font-medium">Nome</label>
               <input
                 type="text"
-                required
+                // required
                 name="nome"
+                value={dataCadastro.nome}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
@@ -108,8 +131,10 @@ export default function CadastroPage() {
               <label className="font-medium">Email</label>
               <input
                 type="email"
-                required
+                // required
                 name="email"
+                value={dataCadastro.email}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
@@ -117,8 +142,10 @@ export default function CadastroPage() {
               <label className="font-medium">Telefone</label>
               <input
                 type="number"
-                required
+                // required
                 name="telefone"
+                value={dataCadastro.telefone}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
@@ -126,16 +153,20 @@ export default function CadastroPage() {
               <label className="font-medium">Cidade</label>
               <input
                 type="text"
-                required
+                // required
                 name="cidade"
+                value={dataCadastro.cidade}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
             <div>
               <label className="font-medium">Estado</label>
               <select
-                required
+                // required
                 name="estado"
+                value={dataCadastro.estado}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               >
                 <option value="">Selecione um estado</option>
@@ -152,12 +183,17 @@ export default function CadastroPage() {
               <label className="font-medium">Senha</label>
               <input
                 type="password"
-                required
+                // required
                 name="senha"
+                value={dataCadastro.senha}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
-            <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+            <button
+              type="submit"
+              className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
+            >
               Criar conta
             </button>
           </form>
