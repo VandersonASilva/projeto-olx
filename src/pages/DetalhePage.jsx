@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function DetalhePage() {
+  const [dataDetalhe, setDataDetalhe] = useState({
+    titulo: "",
+    preco: "",
+    descricaoCurta: "",
+    descricaoCompleta: "",
+    linkImagem: "",
+  });
+
+  function handleChangeInputs(event) {
+    const { name, value } = event.target;
+    setDataDetalhe({ ...dataDetalhe, [name]: value });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(dataDetalhe);
+    console.log("Salvando edição...");
+  }
+
   return (
     <main className="flex overflow-hidden">
       <div className="flex justify-center items-center">
@@ -20,15 +40,15 @@ export default function DetalhePage() {
               terminar.
             </p>
           </div>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="space-y-5 mt-3 lg:pb-12"
-          >
+          <form onSubmit={handleSubmit} className="space-y-5 mt-3 lg:pb-12">
             <div>
               <label className="font-medium">Título do anúncio</label>
               <input
                 type="text"
                 required
+                name="titulo"
+                value={dataDetalhe.titulo}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
@@ -37,6 +57,9 @@ export default function DetalhePage() {
               <input
                 type="number"
                 required
+                name="preco"
+                value={dataDetalhe.preco}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
@@ -45,6 +68,9 @@ export default function DetalhePage() {
               <input
                 type="text"
                 required
+                name="descricaoCurta"
+                value={dataDetalhe.descricaoCurta}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
@@ -52,6 +78,9 @@ export default function DetalhePage() {
               <label className="font-medium">Descrição completa</label>
               <textarea
                 required
+                name="descricaoCompleta"
+                value={dataDetalhe.descricaoCompleta}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               ></textarea>
             </div>
@@ -60,14 +89,23 @@ export default function DetalhePage() {
               <input
                 type="text"
                 required
+                name="linkImagem"
+                value={dataDetalhe.linkImagem}
+                onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
             <div className="flex flex-col items-center gap-4">
-              <Link to={"/meus-anuncios"} className="w-full border-1 border-gray-400 py-2 rounded-lg hover:bg-gray-100 duration-150 cursor-pointer font-semibold text-center">
+              <Link
+                to={"/meus-anuncios"}
+                className="w-full border-1 border-gray-400 py-2 rounded-lg hover:bg-gray-100 duration-150 cursor-pointer font-semibold text-center"
+              >
                 Cancelar
               </Link>
-              <button className="w-full px-4 py-2 text-white font-medium  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer">
+              <button
+                type="submit"
+                className="w-full px-4 py-2 text-white font-medium  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer"
+              >
                 Salvar
               </button>
             </div>
