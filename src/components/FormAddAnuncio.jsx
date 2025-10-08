@@ -6,7 +6,7 @@ export default function FormAddAnuncio() {
     preco: "",
     descricaoCurta: "",
     descricaoCompleta: "",
-    linkImagem: "",
+    imagem: "",
   });
 
   function handleChangeInputs(event) {
@@ -70,8 +70,8 @@ export default function FormAddAnuncio() {
         <input
           type="text"
           required
-          name="linkImagem"
-          value={dataAnuncio.linkImagem}
+          name="imagem"
+          value={dataAnuncio.imagem}
           onChange={handleChangeInputs}
           className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
         />

@@ -7,7 +7,7 @@ export default function DetalhePage() {
     preco: "",
     descricaoCurta: "",
     descricaoCompleta: "",
-    linkImagem: "",
+    imagem: "",
   });
 
   function handleChangeInputs(event) {
@@ -89,8 +89,8 @@ export default function DetalhePage() {
               <input
                 type="text"
                 required
-                name="linkImagem"
-                value={dataDetalhe.linkImagem}
+                name="imagem"
+                value={dataDetalhe.imagem}
                 onChange={handleChangeInputs}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
