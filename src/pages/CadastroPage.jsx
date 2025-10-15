@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { estadosDoBrasil } from "../mock/estadosDoBrasil";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function CadastroPage() {
   const navigate = useNavigate();
@@ -45,9 +46,10 @@ export default function CadastroPage() {
       const data = await response.json();
 
       if (response.ok) {
+        toast.success("Usuário cadastrado com sucesso!");
         navigate("/login");
       } else {
-        console.error(data.message);
+        toast.error(data.message);
       }
     } catch (error) {
       console.error(error);
