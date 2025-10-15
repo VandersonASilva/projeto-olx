@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { estadosDoBrasil } from "../mock/estadosDoBrasil";
 import { useState } from "react";
 
 export default function CadastroPage() {
+  const navigate = useNavigate();
+
   const [dataCadastro, setDataCadastro] = useState({
     nome: "",
     email: "",
@@ -17,10 +19,39 @@ export default function CadastroPage() {
     setDataCadastro({ ...dataCadastro, [name]: value });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log(dataCadastro);
     console.log("Enviar para o BackEnd");
+
+    // para converter só o objeto telefone em number
+
+    const dataRegister = {
+      ...dataCadastro,
+      telefone: Number(dataCadastro.telefone),
+    };
+
+    try {
+      const response = await fetch(
+        "https://dc-classificados.up.railway.app/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataRegister),
+        }
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        navigate("/login");
+      } else {
+        console.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -42,13 +73,6 @@ export default function CadastroPage() {
                 Negocie com compradores e vendedores através do chat OLX e
                 previna-se de golpes.
               </li>
-
-              {/* <li>Favorite as ofertas que você mais curtiu.</li>
-
-              <li>
-                Enviamos recomendações personalizadas para te ajudar a encontrar
-                o apego perfeito.
-              </li> */}
             </ul>
             <div className="flex items-center -space-x-2 overflow-hidden">
               <img
