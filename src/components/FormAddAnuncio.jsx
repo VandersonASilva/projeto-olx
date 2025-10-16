@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-export default function FormAddAnuncio() {
+export default function FormAddAnuncio({ setOpen }) {
   const [dataAnuncio, setDataAnuncio] = useState({
     titulo: "",
     preco: "",
@@ -14,10 +15,45 @@ export default function FormAddAnuncio() {
     setDataAnuncio({ ...dataAnuncio, [name]: value });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log(dataAnuncio);
-    console.log("Enviando dados...");
+
+    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch(
+        `https://dc-classificados.up.railway.app/api/anuncios/addNewAnuncio?userId=${userId}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          Authorization: `Bearer ${token}`,
+          body: JSON.stringify(),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Anúncio criado com sucesso!");
+        // limpar os inputs
+        setDataAnuncio({
+          titulo: "",
+          preco: "",
+          descricaoCurta: "",
+          descricaoCompleta: "",
+          imagem: "",
+        });
+
+        // fechar o drawer
+        setOpen(false);
+
+        // requisição para trazer os dados do anúncio atualizados - falta implementar
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -26,7 +62,7 @@ export default function FormAddAnuncio() {
         <label className="font-medium">Título do anúncio</label>
         <input
           type="text"
-          required
+          // required
           name="titulo"
           value={dataAnuncio.titulo}
           onChange={handleChangeInputs}
@@ -37,7 +73,7 @@ export default function FormAddAnuncio() {
         <label className="font-medium">Preço</label>
         <input
           type="number"
-          required
+          // required
           name="preco"
           value={dataAnuncio.preco}
           onChange={handleChangeInputs}
@@ -48,7 +84,7 @@ export default function FormAddAnuncio() {
         <label className="font-medium">Descrição curta</label>
         <input
           type="text"
-          required
+          // required
           name="descricaoCurta"
           value={dataAnuncio.descricaoCurta}
           onChange={handleChangeInputs}
@@ -58,7 +94,7 @@ export default function FormAddAnuncio() {
       <div>
         <label className="font-medium">Descrição completa</label>
         <textarea
-          required
+          // required
           name="descricaoCompleta"
           value={dataAnuncio.descricaoCompleta}
           onChange={handleChangeInputs}
@@ -69,7 +105,7 @@ export default function FormAddAnuncio() {
         <label className="font-medium">Link da imagem</label>
         <input
           type="text"
-          required
+          // required
           name="imagem"
           value={dataAnuncio.imagem}
           onChange={handleChangeInputs}
