@@ -30,7 +30,9 @@ export default function LoginPage() {
       if (response.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
+
         toast.success("Login realizado com sucesso!");
+
         navigate("/meus-anuncios");
       } else {
         toast.error(data.message);

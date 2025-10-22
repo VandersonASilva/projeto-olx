@@ -26,9 +26,15 @@ export default function FormAddAnuncio({ setOpen }) {
         `https://dc-classificados.up.railway.app/api/anuncios/addNewAnuncio?userId=${userId}`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          Authorization: `Bearer ${token}`,
-          body: JSON.stringify(),
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            ...dataAnuncio,
+            preco: Number(dataAnuncio.preco),
+          }),
+          // para converter o objeto preco em number usando Number()
         }
       );
 
