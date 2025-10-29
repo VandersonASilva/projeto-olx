@@ -4,11 +4,32 @@ import CardsLogado from "../components/CardsLogado";
 import Footer from "../components/Footer";
 import Drawer from "../components/Drawer";
 import Modal from "../components/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function MeusAnunciosPage() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [anunciosData, setAnunciosData] = useEffect([]);
+  const [Loading, setLoading] = useState(false);
+
+  async function fetchData() {
+    try {
+      localStorage.getItem("userId");
+
+      const data = await Response.json();
+
+      if (Response.ok) {
+        setAnunciosData(data);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(data.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {}, []);
 
   return (
     <div>
