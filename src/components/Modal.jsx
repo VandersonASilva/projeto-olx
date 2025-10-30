@@ -9,7 +9,24 @@ import {
 } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
-export default function Modal({open, setOpen}) {
+export default function Modal({ open, setOpen }) {
+  async function handleDeleteAnuncio() {
+    try {
+      const response = await fetch(
+        `https://dc-classificados.up.railway.app/api/anuncios/deletemyanuncio/${id}?userId=${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      toast.error(data.message);
+    }
+  }
   return (
     <div>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -41,7 +58,8 @@ export default function Modal({open, setOpen}) {
                     </DialogTitle>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Tem certeza que deseja deletar este anúncio permanentemente? Esta ação não pode ser desfeita.
+                        Tem certeza que deseja deletar este anúncio
+                        permanentemente? Esta ação não pode ser desfeita.
                       </p>
                     </div>
                   </div>

@@ -11,25 +11,51 @@ export default function MeusAnunciosPage() {
   const [openModal, setOpenModal] = useState(false);
   const [anunciosData, setAnunciosData] = useEffect([]);
   const [Loading, setLoading] = useState(false);
+  const [anuncioToDelete, setAnuncioToDelete] = useState("");
 
   async function fetchData() {
+    setLoading(true);
+
+    const response = await fetch("");
     try {
-      localStorage.getItem("userId");
+      const response = await fetch(
+        `https://dc-classificados.up.railway.app/api/anuncios/addNewAnuncio?userId=${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      const data = await Response.json();
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Anúncio criado com sucesso!");
+        // limpar os inputs
+        setDataAnuncio({
+          titulo: "",
+          preco: "",
+          descricaoCurta: "",
+          descricaoCompleta: "",
+          imagem: "",
+        });
 
-      if (Response.ok) {
-        setAnunciosData(data);
+        // fechar o drawer
+        setOpen(false);
+
+        // requisição para trazer os dados do anúncio atualizados - falta implementar
+      } else {
+        toast.error(data.message);
       }
     } catch (error) {
       console.error(error);
-      toast.error(data.message);
-    } finally {
-      setLoading(false);
     }
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>

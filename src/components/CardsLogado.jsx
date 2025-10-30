@@ -130,7 +130,7 @@ export default function CardsLogado({ setOpenModal }) {
                 <PencilLineIcon size={32} />
               </button>
               <button
-                onClick={handleOpenModal}
+                onClick={() => handleOpenModal(item.id)}
                 className="text-white bg-red-700 w-fit p-3 rounded-xl"
               >
                 <TrashIcon size={32} />
