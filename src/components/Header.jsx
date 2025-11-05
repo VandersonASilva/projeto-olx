@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 export default function Header() {
   const [state, setState] = useState(false);
 
-  // Replace javascript:void(0) paths with your paths
   const navigation = [
-    { title: "Todos os Anúncios", path: "/" },
+    { title: "Todos os anúncios", path: "/" },
     { title: "Meus anúncios", path: "/meus-anuncios" },
   ];
 
@@ -29,7 +28,7 @@ export default function Header() {
         <div className="flex items-center justify-between py-5 md:block">
           <a href="javascript:void(0)">
             <img
-              src="https://logopng.com.br/logos/olx-104.png"
+              src="https://logodownload.org/wp-content/uploads/2016/10/olx-logo-13.png"
               width={120}
               height={50}
               alt="Float UI logo"
@@ -99,7 +98,7 @@ export default function Header() {
               to={"/cadastro"}
               className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex"
             >
-              Cadastrar
+              Cadastre-se
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"

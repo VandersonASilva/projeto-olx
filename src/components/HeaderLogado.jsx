@@ -7,7 +7,7 @@ export default function HeaderLogado() {
   const navigation = ["Logout"];
 
   const submenuNav = [
-    { title: "Todos os Anúncios", path: "/" },
+    { title: "Todos os anúncios", path: "/" },
     { title: "Meus anúncios", path: "/meus-anuncios" },
   ];
 
@@ -21,7 +21,7 @@ export default function HeaderLogado() {
         <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
           <a href="javascript:void(0)">
             <img
-              src="https://logopng.com.br/logos/olx-104.png"
+              src="https://logodownload.org/wp-content/uploads/2016/10/olx-logo-13.png"
               width={120}
               height={50}
               alt="Float UI logo"

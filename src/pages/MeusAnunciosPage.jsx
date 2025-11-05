@@ -5,20 +5,37 @@ import Footer from "../components/Footer";
 import Drawer from "../components/Drawer";
 import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { data } from "react-router-dom";
 
 export default function MeusAnunciosPage() {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [anunciosData, setAnunciosData] = useEffect([]);
-  const [Loading, setLoading] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [anunciosData, setAnunciosData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [anuncioToDelete, setAnuncioToDelete] = useState("");
 
   async function fetchData() {
+    setLoading(true);
+
     try {
-      localStorage.getItem("userId");
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
 
-      const data = await Response.json();
+      const response = await fetch(
+        `https://dc-classificados.up.railway.app/api/anuncios/getallmyanuncios?userId=${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      if (Response.ok) {
+      const data = await response.json();
+
+      if (response.ok) {
         setAnunciosData(data);
       }
     } catch (error) {
@@ -29,17 +46,29 @@ export default function MeusAnunciosPage() {
     }
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
       <HeaderLogado />
       <SectionAddAnuncio setOpenDrawer={setOpenDrawer} />
-      <CardsLogado setOpenModal={setOpenModal} />
+      <CardsLogado
+        setOpenModalDelete={setOpenModalDelete}
+        anunciosData={anunciosData}
+        loading={loading}
+        setAnuncioToDelete={setAnuncioToDelete}
+      />
       <Footer />
 
-      <Drawer open={openDrawer} setOpen={setOpenDrawer} />
-      <Modal open={openModal} setOpen={setOpenModal} />
+      <Drawer open={openDrawer} setOpen={setOpenDrawer} fetchData={fetchData} />
+      <Modal
+        open={openModalDelete}
+        setOpen={setOpenModalDelete}
+        anuncioToDelete={anuncioToDelete}
+        fetchData={fetchData}
+      />
     </div>
   );
 }
