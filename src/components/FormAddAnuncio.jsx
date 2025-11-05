@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function FormAddAnuncio({ setOpen }) {
-  const [dataAnuncio, setDataAnuncio] = useState({
+export default function FormAddAnuncio({ setOpen, fetchData }) {
+  const [dataNovoAnuncio, setDataNovoAnuncio] = useState({
     titulo: "",
     preco: "",
     descricaoCurta: "",
@@ -10,12 +10,12 @@ export default function FormAddAnuncio({ setOpen }) {
     imagem: "",
   });
 
-  function handleChangeInputs(event) {
+  function handleChangeNovoAnuncio(event) {
     const { name, value } = event.target;
-    setDataAnuncio({ ...dataAnuncio, [name]: value });
+    setDataNovoAnuncio({ ...dataNovoAnuncio, [name]: value });
   }
 
-  async function handleSubmit(event) {
+  async function handleSubmitNovoAnuncio(event) {
     event.preventDefault();
 
     const userId = localStorage.getItem("userId");
@@ -31,18 +31,18 @@ export default function FormAddAnuncio({ setOpen }) {
             authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            ...dataAnuncio,
-            preco: Number(dataAnuncio.preco),
+            ...dataNovoAnuncio,
+            preco: Number(dataNovoAnuncio.preco),
           }),
-          // para converter o objeto preco em number usando Number()
         }
       );
 
       const data = await response.json();
+
       if (response.ok) {
-        toast.success("Anúncio criado com sucesso!");
-        // limpar os inputs
-        setDataAnuncio({
+        toast.success("Anúncio criado com sucesso");
+
+        setDataNovoAnuncio({
           titulo: "",
           preco: "",
           descricaoCurta: "",
@@ -50,10 +50,9 @@ export default function FormAddAnuncio({ setOpen }) {
           imagem: "",
         });
 
-        // fechar o drawer
         setOpen(false);
 
-        // requisição para trazer os dados do anúncio atualizados - falta implementar
+        fetchData();
       } else {
         toast.error(data.message);
       }
@@ -63,15 +62,18 @@ export default function FormAddAnuncio({ setOpen }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 mt-3 lg:pb-12">
+    <form
+      onSubmit={handleSubmitNovoAnuncio}
+      className="space-y-5 mt-3 lg:pb-12"
+    >
       <div>
-        <label className="font-medium">Título do anúncio</label>
+        <label className="font-medium">Título anúncio</label>
         <input
           type="text"
-          // required
           name="titulo"
-          value={dataAnuncio.titulo}
-          onChange={handleChangeInputs}
+          value={dataNovoAnuncio.titulo}
+          onChange={handleChangeNovoAnuncio}
+          required
           className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
         />
       </div>
@@ -79,50 +81,54 @@ export default function FormAddAnuncio({ setOpen }) {
         <label className="font-medium">Preço</label>
         <input
           type="number"
-          // required
           name="preco"
-          value={dataAnuncio.preco}
-          onChange={handleChangeInputs}
+          value={dataNovoAnuncio.preco}
+          onChange={handleChangeNovoAnuncio}
+          required
           className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
         />
       </div>
+
       <div>
-        <label className="font-medium">Descrição curta</label>
+        <label className="font-medium">Descrição Curta</label>
         <input
           type="text"
-          // required
           name="descricaoCurta"
-          value={dataAnuncio.descricaoCurta}
-          onChange={handleChangeInputs}
+          value={dataNovoAnuncio.descricaoCurta}
+          onChange={handleChangeNovoAnuncio}
+          required
           className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
         />
       </div>
+
       <div>
-        <label className="font-medium">Descrição completa</label>
+        <label className="font-medium">Descrição Completa</label>
         <textarea
-          // required
+          required
           name="descricaoCompleta"
-          value={dataAnuncio.descricaoCompleta}
-          onChange={handleChangeInputs}
+          value={dataNovoAnuncio.descricaoCompleta}
+          onChange={handleChangeNovoAnuncio}
           className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
         ></textarea>
       </div>
+
       <div>
         <label className="font-medium">Link da imagem</label>
         <input
-          type="text"
-          // required
           name="imagem"
-          value={dataAnuncio.imagem}
-          onChange={handleChangeInputs}
+          value={dataNovoAnuncio.imagem}
+          onChange={handleChangeNovoAnuncio}
+          type="text"
+          required
           className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
         />
       </div>
+
       <button
         type="submit"
-        className="w-full px-4 py-2 text-white font-medium  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer"
+        className="w-full px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg duration-150"
       >
-        Adicionar Anúncio
+        Adicionar anúncio
       </button>
     </form>
   );

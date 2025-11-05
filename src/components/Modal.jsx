@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -8,25 +7,39 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { toast } from "react-toastify";
 
-export default function Modal({ open, setOpen }) {
+export default function Modal({ open, setOpen, anuncioToDelete, fetchData }) {
   async function handleDeleteAnuncio() {
     try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
-        `https://dc-classificados.up.railway.app/api/anuncios/deletemyanuncio/${id}?userId=${userId}`,
+        `https://dc-classificados.up.railway.app/api/anuncios/deletemyanuncio/${anuncioToDelete}?userId=${userId}`,
         {
           method: "DELETE",
           headers: {
-            "Content-type": "application/json",
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         }
       );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Anuncio deletado com sucesso");
+        setOpen(false);
+        fetchData();
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
       console.error(error);
-      toast.error(data.message);
     }
   }
+
   return (
     <div>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -54,12 +67,12 @@ export default function Modal({ open, setOpen }) {
                       as="h3"
                       className="text-base font-semibold text-gray-900"
                     >
-                      Deletar Anúncio
+                      Deletar anúncio
                     </DialogTitle>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Tem certeza que deseja deletar este anúncio
-                        permanentemente? Esta ação não pode ser desfeita.
+                        Você tem certeza que deseja deletar este anúncio? Esta
+                        ação não pode ser desfeita.
                       </p>
                     </div>
                   </div>
@@ -68,10 +81,10 @@ export default function Modal({ open, setOpen }) {
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                 <button
                   type="button"
-                  onClick={() => setOpen(false)}
+                  onClick={handleDeleteAnuncio}
                   className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto"
                 >
-                  Deletar
+                  Deletar anúncio
                 </button>
                 <button
                   type="button"

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-export default function useEffectPage() {
+export default function UseEffectPage() {
   const [todosAnuncios, setTodosAnuncios] = useState([]);
   const [loading, setLoading] = useState(false);
-  //const [count, setCount] = useState(0);
 
   async function fetchAnuncios() {
     try {
@@ -14,6 +13,7 @@ export default function useEffectPage() {
       );
 
       const data = await response.json();
+
       setTodosAnuncios(data);
     } catch (error) {
       console.error(error);
@@ -48,23 +48,3 @@ export default function useEffectPage() {
     </div>
   );
 }
-
-// function handleDiminuir() {
-//   setCount((prevState) => {
-//     return prevState - 1;
-//   });
-// }
-
-// function handleAumentar() {
-//   setCount((prevState) => {
-//     return prevState + 1;
-//   });
-// }
-
-// return (
-//   <div>
-//     <button onClick={handleDiminuir}>Diminuir</button>
-//     <h1>{count}</h1>
-//     <button onClick={handleAumentar}>Aumentar</button>
-//   </div>
-// );

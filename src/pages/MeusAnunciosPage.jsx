@@ -5,23 +5,27 @@ import Footer from "../components/Footer";
 import Drawer from "../components/Drawer";
 import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { data } from "react-router-dom";
 
 export default function MeusAnunciosPage() {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [anunciosData, setAnunciosData] = useEffect([]);
-  const [Loading, setLoading] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [anunciosData, setAnunciosData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [anuncioToDelete, setAnuncioToDelete] = useState("");
 
   async function fetchData() {
     setLoading(true);
 
-    const response = await fetch("");
     try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
-        `https://dc-classificados.up.railway.app/api/anuncios/addNewAnuncio?userId=${userId}`,
+        `https://dc-classificados.up.railway.app/api/anuncios/getallmyanuncios?userId=${userId}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${token}`,
@@ -30,26 +34,15 @@ export default function MeusAnunciosPage() {
       );
 
       const data = await response.json();
+
       if (response.ok) {
-        toast.success("Anúncio criado com sucesso!");
-        // limpar os inputs
-        setDataAnuncio({
-          titulo: "",
-          preco: "",
-          descricaoCurta: "",
-          descricaoCompleta: "",
-          imagem: "",
-        });
-
-        // fechar o drawer
-        setOpen(false);
-
-        // requisição para trazer os dados do anúncio atualizados - falta implementar
-      } else {
-        toast.error(data.message);
+        setAnunciosData(data);
       }
     } catch (error) {
       console.error(error);
+      toast.error(data.message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -61,11 +54,21 @@ export default function MeusAnunciosPage() {
     <div>
       <HeaderLogado />
       <SectionAddAnuncio setOpenDrawer={setOpenDrawer} />
-      <CardsLogado setOpenModal={setOpenModal} />
+      <CardsLogado
+        setOpenModalDelete={setOpenModalDelete}
+        anunciosData={anunciosData}
+        loading={loading}
+        setAnuncioToDelete={setAnuncioToDelete}
+      />
       <Footer />
 
-      <Drawer open={openDrawer} setOpen={setOpenDrawer} />
-      <Modal open={openModal} setOpen={setOpenModal} />
+      <Drawer open={openDrawer} setOpen={setOpenDrawer} fetchData={fetchData} />
+      <Modal
+        open={openModalDelete}
+        setOpen={setOpenModalDelete}
+        anuncioToDelete={anuncioToDelete}
+        fetchData={fetchData}
+      />
     </div>
   );
 }

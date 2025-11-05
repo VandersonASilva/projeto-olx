@@ -1,15 +1,17 @@
 import { CircleNotchIcon } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 export default function Cards() {
-  // dados mockados (simulados)
+  const [anunciosData, setAnunciosData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  //dados mockados
   // const anunciosData = [
   //   {
   //     titulo: "Bicicleta Aro 29",
   //     descricaoCurta:
-  //       "Bicicleta em ótimo estado, usado apenas em trilhas leves.",
-  //     created_at: "01.10.2025",
+  //       "Bicicleta em ótimo estado, usada apenas em trilhas leves.",
+  //     created_at: "01/10/2025",
   //     preco: "R$ 1.200,00",
   //     usuario: {
   //       cidade: "São Paulo",
@@ -19,39 +21,28 @@ export default function Cards() {
   //   {
   //     titulo: "Smartphone Galaxy S21",
   //     descricaoCurta:
-  //       "Smartphone com câmera de alta resolução e bateria duradoura.",
-  //     created_at: "15.09.2025",
+  //       "Smartphone usado, com tela de 6.2 polegadas e câmera de 64MP.",
+  //     created_at: "15/09/2025",
   //     preco: "R$ 2.500,00",
   //     usuario: {
   //       cidade: "Rio de Janeiro",
   //       estado: "RJ",
   //     },
   //   },
-  //   {
-  //     titulo: "Notebook Dell Inspiron",
-  //     descricaoCurta: "Notebook ideal para trabalho e estudos, com 8GB de RAM.",
-  //     created_at: "20.08.2025",
-  //     preco: "R$ 3.000,00",
-  //     usuario: {
-  //       cidade: "Belo Horizonte",
-  //       estado: "MG",
-  //     },
-  //   },
   // ];
 
-  const [anunciosData, setAnunciosData] = useState([]);
-  const [Loading, setLoading] = useState(false);
-
   async function fetchDataAnuncios() {
+    setLoading(true);
+
     try {
-      setLoading(true);
       const response = await fetch(
         "https://dc-classificados.up.railway.app/api/anuncios/getAllAnuncios"
       );
+
       const data = await response.json();
+
       if (response.ok) {
         setAnunciosData(data);
-        toast.success("Anúncios carregados!");
       }
     } catch (error) {
       console.error(error);
@@ -68,8 +59,8 @@ export default function Cards() {
 
   return (
     <div>
-      {Loading ? (
-        <div className="text-[#6F0AD5] flex justify-center items-center flex-col">
+      {loading ? (
+        <div className="text-[#6F0AD5] flex justify-center items-center flex-col ">
           <CircleNotchIcon size={70} className="animate-spin" />
           <p className="text-2xl">Carregando...</p>
         </div>
@@ -77,7 +68,7 @@ export default function Cards() {
         <section className="mt-12 max-w-screen-lg mx-auto px-4 md:px-8">
           <div>
             <h1 className="text-gray-800 text-3xl font-semibold">
-              Todos os Anúncios
+              Todos os anúncios
             </h1>
           </div>
 

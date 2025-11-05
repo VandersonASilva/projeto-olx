@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function DetalhePage() {
-  const [dataDetalhe, setDataDetalhe] = useState({
+  const [dataEditAnuncio, setDataEditAnuncio] = useState({
     titulo: "",
     preco: "",
     descricaoCurta: "",
@@ -10,15 +10,15 @@ export default function DetalhePage() {
     imagem: "",
   });
 
-  function handleChangeInputs(event) {
+  function handleChangeEditAnuncio(event) {
     const { name, value } = event.target;
-    setDataDetalhe({ ...dataDetalhe, [name]: value });
+    setDataEditAnuncio({ ...dataEditAnuncio, [name]: value });
   }
 
-  function handleSubmit(event) {
+  function handleSubmitEditAnuncio(event) {
     event.preventDefault();
-    console.log(dataDetalhe);
-    console.log("Salvando edição...");
+
+    console.log(dataEditAnuncio);
   }
 
   return (
@@ -33,81 +33,86 @@ export default function DetalhePage() {
         <div className="max-w-lg flex-1 mx-auto px-4 text-gray-600">
           <div>
             <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-              Edite suas informações
+              Editar anúncio
             </h3>
             <p className="mt-3">
               Edite as informações do seu anúncio e clique em salvar quando
               terminar.
             </p>
           </div>
-          <form onSubmit={handleSubmit} className="space-y-5 mt-3 lg:pb-12">
+
+          <form
+            onSubmit={handleSubmitEditAnuncio}
+            className="space-y-5 mt-3 lg:pb-12"
+          >
             <div>
-              <label className="font-medium">Título do anúncio</label>
+              <label className="font-medium">Título anúncio</label>
               <input
                 type="text"
-                required
                 name="titulo"
-                value={dataDetalhe.titulo}
-                onChange={handleChangeInputs}
+                value={dataEditAnuncio.titulo}
+                onChange={handleChangeEditAnuncio}
+                required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
             <div>
-              <label className="font-medium">Valor</label>
+              <label className="font-medium">Preço</label>
               <input
                 type="number"
-                required
                 name="preco"
-                value={dataDetalhe.preco}
-                onChange={handleChangeInputs}
+                value={dataEditAnuncio.preco}
+                onChange={handleChangeEditAnuncio}
+                required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
+
             <div>
-              <label className="font-medium">Descrição curta</label>
+              <label className="font-medium">Descrição Curta</label>
               <input
                 type="text"
-                required
                 name="descricaoCurta"
-                value={dataDetalhe.descricaoCurta}
-                onChange={handleChangeInputs}
+                value={dataEditAnuncio.descricaoCurta}
+                onChange={handleChangeEditAnuncio}
+                required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
+
             <div>
-              <label className="font-medium">Descrição completa</label>
+              <label className="font-medium">Descrição Completa</label>
               <textarea
                 required
                 name="descricaoCompleta"
-                value={dataDetalhe.descricaoCompleta}
-                onChange={handleChangeInputs}
+                value={dataEditAnuncio.descricaoCompleta}
+                onChange={handleChangeEditAnuncio}
                 className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               ></textarea>
             </div>
+
             <div>
               <label className="font-medium">Link da imagem</label>
               <input
                 type="text"
-                required
                 name="imagem"
-                value={dataDetalhe.imagem}
-                onChange={handleChangeInputs}
+                value={dataEditAnuncio.imagem}
+                onChange={handleChangeEditAnuncio}
+                required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
               />
             </div>
-            <div className="flex flex-col items-center gap-4">
+
+            <div className="flex flex-col gap-4 items-center">
+              <button className="w-full px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg duration-150">
+                Editar anúncio
+              </button>
               <Link
                 to={"/meus-anuncios"}
-                className="w-full border-1 border-gray-400 py-2 rounded-lg hover:bg-gray-100 duration-150 cursor-pointer font-semibold text-center"
+                className="w-full text-center border-1 border-gray-400 py-2 rounded-lg hover:bg-gray-100 duration-150 font-semibold"
               >
                 Cancelar
               </Link>
-              <button
-                type="submit"
-                className="w-full px-4 py-2 text-white font-medium  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer"
-              >
-                Salvar
-              </button>
             </div>
           </form>
         </div>
