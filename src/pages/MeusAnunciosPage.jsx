@@ -59,6 +59,7 @@ export default function MeusAnunciosPage() {
         anunciosData={anunciosData}
         loading={loading}
         setAnuncioToDelete={setAnuncioToDelete}
+        // setAnuncioToEdit={setAnuncioToEdit}
       />
       <Footer />
 
