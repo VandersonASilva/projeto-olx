@@ -10,7 +10,6 @@ export default function CardsLogado({
   anunciosData,
   loading,
   setAnuncioToDelete,
-  // setAnuncioToEdit,
 }) {
   const navigate = useNavigate();
 
@@ -20,7 +19,6 @@ export default function CardsLogado({
   }
 
   function handleChangeRoute(anuncio) {
-    // setAnuncioToEdit(anuncio.id);
     navigate(`/anuncio/${anuncio.id}`);
   }
 
