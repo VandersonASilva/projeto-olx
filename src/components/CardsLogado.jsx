@@ -4,6 +4,7 @@ import {
   TrashIcon,
 } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../utils/formatDate";
 
 export default function CardsLogado({
   setOpenModalDelete,
@@ -74,7 +75,7 @@ export default function CardsLogado({
                             clipRule="evenodd"
                           />
                         </svg>
-                        {item.created_at}
+                        {formatDate(item.created_at)}
                       </span>
                       <span className="flex items-center text-gray-500">
                         <svg

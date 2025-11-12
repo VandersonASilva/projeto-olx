@@ -1,5 +1,6 @@
 import { CircleNotchIcon } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { formatDate } from "../utils/formatDate";
 
 export default function Cards() {
   const [anunciosData, setAnunciosData] = useState([]);
@@ -110,7 +111,7 @@ export default function Cards() {
                               clipRule="evenodd"
                             />
                           </svg>
-                          {item.created_at}
+                          {formatDate(item.created_at)}
                         </span>
                         <span className="flex items-center text-gray-500">
                           <svg
